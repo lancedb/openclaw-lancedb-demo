@@ -1,0 +1,22 @@
+{
+  "name": "dungeon-buddy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A tiny OpenClaw + LanceDB memory-layer demo with cross-session recall",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "reset": "node src/reset.js",
+    "session1": "node src/session1.js",
+    "session2": "node src/session2.js",
+    "inspect": "node src/inspect.js",
+    "demo": "node src/demo.js",
+    "repro": "npm run reset && npm run session1"
+  },
+  "dependencies": {
+    "@lancedb/lancedb": "^0.26.2",
+    "memory-lancedb-pro": "^1.1.0-beta.6"
+  }
+}
