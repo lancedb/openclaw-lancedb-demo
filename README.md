@@ -1,11 +1,11 @@
-# Dungeon Buddy: OpenClaw + LanceDB Memory Pro Demo
+# Dungeon Buddy: OpenClaw + Memory LanceDB Pro Demo
 
 This is a tiny, reproducible project that demonstrates how to use the [memory-lancedb-pro](https://github.com/CortexReach/memory-lancedb-pro) plugin with [OpenClaw](https://github.com/openclaw/openclaw).
 
 The following sequence of steps are demonstrated:
 - an agent writes memory in one session,
 - memory persists locally on disk,
-- a later session recalls the right facts,
+- a later session recalls the right facts from LanceDB,
 - the agent behavior is conditioned on the recalled memory.
 
 The goal is to demonstrate how simple it is to use LanceDB to create a local-first memory-layer pattern for OpenClaw in a way that you can get started in just a few minutes. This demo uses OpenAI embeddings and LLMs, but you can also do it with a locally-hosted open source embedding model and LLM.
@@ -14,9 +14,8 @@ The goal is to demonstrate how simple it is to use LanceDB to create a local-fir
 
 1. `session1` simulates an OpenClaw memory-write tool.
 2. Memory is stored in local LanceDB files under `demo-memory-lancedb/`.
-3. `session2` simulates a new OpenClaw session and recalls the most relevant memories based on similarity using vector search.
-4. A quest plan is generated from recalled memory (class, dislikes, combat style, inventory).
-5. OpenClaw runtime config uses:
+3. `session2` simulates a new OpenClaw session and recalls the most relevant memories for the given questions based on similarity using vector search.
+4. OpenClaw runtime config uses:
    - generation model: `openai/gpt-4.1` (OpenAI)
    - memory plugin: `memory-lancedb-pro` (CortexReach)
    - embedding model: `text-embedding-3-small` (OpenAI)
