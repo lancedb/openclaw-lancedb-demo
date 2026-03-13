@@ -1,47 +1,46 @@
 import { fileURLToPath } from "node:url";
-import { openMemoryStore } from "./memory.js";
+import { openMemoryStore } from "./memory.ts";
 
 export async function runSession1() {
   const store = await openMemoryStore();
 
-  const userId = "player-1";
-  const sessionId = "session-1";
-
-  const captures = [
+  const captures: Array<{ category: "entity" | "preference" | "fact"; text: string; importance: number }> = [
     {
-      kind: "profile",
+      category: "entity",
       text: "Player class is elf healer who keeps the team alive.",
       importance: 0.95,
     },
     {
-      kind: "preference",
+      category: "preference",
       text: "Player hates spiders and avoids spider caves.",
       importance: 0.9,
     },
     {
-      kind: "preference",
+      category: "preference",
       text: "Player loves fire spells and explosive battle plans.",
       importance: 0.85,
     },
     {
-      kind: "resource",
+      category: "fact",
       text: "Inventory has one phoenix ember and three healing potions.",
       importance: 0.75,
     },
   ];
 
-  console.log("Session 1: capturing long-term memory");
+  console.log("Session 1: seeding plugin-compatible long-term memory");
   for (const item of captures) {
-    await store.remember({ userId, sessionId, ...item });
-    console.log(`- saved: [${item.kind}] ${item.text}`);
+    await store.remember({
+      ...item,
+      scope: "global",
+    });
   }
 
-  console.log("Session 1 complete. Memory written to demo-memory-lancedb/");
+  console.log("Session 1 complete. Memory written to demo-memory-lancedb/ in memory-lancedb-pro schema.");
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {
-  runSession1().catch((err) => {
+  runSession1().catch((err: unknown) => {
     console.error(err);
     process.exit(1);
   });
