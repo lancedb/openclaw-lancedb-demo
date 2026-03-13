@@ -1,5 +1,5 @@
 {
-  "name": "dungeon-buddy",
+  "name": "openclaw-lancedb-demo",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,15 +8,13 @@
     "node": ">=22"
   },
   "scripts": {
-    "reset": "node src/reset.js",
-    "session1": "node src/session1.js",
-    "session2": "node src/session2.js",
-    "inspect": "node src/inspect.js",
-    "demo": "node src/demo.js",
+    "reset": "node --experimental-strip-types src/reset.ts",
+    "session1": "node --experimental-strip-types src/session1.ts",
+    "inspect": "node --experimental-strip-types src/inspect.ts",
+    "demo": "npm run repro && npm run inspect",
     "repro": "npm run reset && npm run session1"
   },
   "dependencies": {
-    "@lancedb/lancedb": "^0.26.2",
-    "memory-lancedb-pro": "^1.1.0-beta.6"
+    "@lancedb/lancedb": "^0.26.2"
   }
 }
